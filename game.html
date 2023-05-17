@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>_ƒQ[</title>
+	<meta charset="utf-8">
+	<title>ç¥ã‚²ãƒ¼</title>
 	<style>
 		#game-board {
 			width: 800px;
@@ -60,7 +61,7 @@
 			position: absolute;
 			bottom: 0;
 			background: url(./nature_stone_ishi.png);
-			background-size: cover; /* ‰æ‘œ‚ğ—v‘f‚É‡‚í‚¹‚Ä•\¦ */
+			background-size: cover; /* ç”»åƒã‚’è¦ç´ ã«åˆã‚ã›ã¦è¡¨ç¤º */
 		}
 		
 		@keyframes move-enemy {
@@ -78,7 +79,7 @@
 			position: absolute;
 			bottom: 0;
 			left: -200px;
-			background-size: cover; /* ‰æ‘œ‚ğ—v‘f‚É‡‚í‚¹‚Ä•\¦ */
+			background-size: cover; /* ç”»åƒã‚’è¦ç´ ã«åˆã‚ã›ã¦è¡¨ç¤º */
 		}
 		
 		@keyframes move-chapel {
@@ -105,14 +106,14 @@
 </head>
 <body>
 	<div id="game-board">
-		<p id="game-title">®ê‚ğ–Úw‚¹<br>‰æ–Ê‚ğƒ^ƒbƒ`‚ÅƒXƒ^[ƒg‚·‚é‚æ</p>
+		<p id="game-title">å¼å ´ã‚’ç›®æŒ‡ã›<br>ç”»é¢ã‚’ã‚¿ãƒƒãƒã§ã‚¹ã‚¿ãƒ¼ãƒˆã™ã‚‹ã‚ˆ</p>
 		<img src="S18079751.jpg" id="player">
 		<div class="enemy"></div>
 		<div class="chapel"></div>
 		<div id="score">Score: 0pt</div>
 	</div>
-@@@@@‘€ìà–¾<br>
-@@@@@‰æ–Êƒ^ƒbƒ`‚ÅƒWƒƒƒ“ƒv
+ã€€ã€€ã€€ã€€ã€€æ“ä½œèª¬æ˜<br>
+ã€€ã€€ã€€ã€€ã€€ç”»é¢ã‚¿ãƒƒãƒã§ã‚¸ãƒ£ãƒ³ãƒ—
 	<script>
 window.onload = function () {
 
@@ -154,27 +155,27 @@ const chapel = document.querySelector('.chapel');
 				if (checkCollision(enemy, player)&&startflg==1) {
 					if (scoreNumber < 1000) {
 startflg=0;
-						alert("Game Over\n‚ ‚È‚½‚ÌƒXƒRƒA‚Í" + scoreNumber + "“_‚Å‚·B\n’á‚¢‚Å‚·‚ËB");
+						alert("Game Over\nã‚ãªãŸã®ã‚¹ã‚³ã‚¢ã¯" + scoreNumber + "ç‚¹ã§ã™ã€‚\nä½ã„ã§ã™ã­ã€‚");
 window.location.href = 'top.html';
 					} else if(1000 <= scoreNumber && scoreNumber < 3000){
 startflg=0;
-						alert("Game Over\n‚ ‚È‚½‚ÌƒXƒRƒA‚Í" + scoreNumber + "“_‚Å‚·B\n‚Ü‚¾‚Ü‚¾‚Å‚·‚ËB");
+						alert("Game Over\nã‚ãªãŸã®ã‚¹ã‚³ã‚¢ã¯" + scoreNumber + "ç‚¹ã§ã™ã€‚\nã¾ã ã¾ã ã§ã™ã­ã€‚");
 window.location.href = 'top.html';
 					} else if(3000 <= scoreNumber && scoreNumber < 5000){
 startflg=0;
-						alert("Game Over\n‚ ‚È‚½‚ÌƒXƒRƒA‚Í" + scoreNumber + "“_‚Å‚·B\n‚Ü‚ ‚Ü‚ ‚Å‚·‚ËB");
+						alert("Game Over\nã‚ãªãŸã®ã‚¹ã‚³ã‚¢ã¯" + scoreNumber + "ç‚¹ã§ã™ã€‚\nã¾ã‚ã¾ã‚ã§ã™ã­ã€‚");
 window.location.href = 'top.html';
 					} else if(5000 <= scoreNumber && scoreNumber < 7000){
 startflg=0;
-						alert("Game Over\n‚ ‚È‚½‚ÌƒXƒRƒA‚Í" + scoreNumber + "“_‚Å‚·B\n‚¢‚¢üs‚Á‚Ä‚Ü‚·‚ËB");
+						alert("Game Over\nã‚ãªãŸã®ã‚¹ã‚³ã‚¢ã¯" + scoreNumber + "ç‚¹ã§ã™ã€‚\nã„ã„ç·šè¡Œã£ã¦ã¾ã™ã­ã€‚");
 window.location.href = 'top.html';
 					} else if(7000 <= scoreNumber && scoreNumber < 9000){
 startflg=0;
-						alert("Game Over\n‚ ‚È‚½‚ÌƒXƒRƒA‚Í" + scoreNumber + "“_‚Å‚·B\n‚·‚°‚¦B");
+						alert("Game Over\nã‚ãªãŸã®ã‚¹ã‚³ã‚¢ã¯" + scoreNumber + "ç‚¹ã§ã™ã€‚\nã™ã’ãˆã€‚");
 window.location.href = 'top.html';
 					} else if(10000 <= scoreNumber){
 startflg=0;
-						alert("Game Over\n‚ ‚È‚½‚ÌƒXƒRƒA‚Í" + scoreNumber + "“_‚Å‚·B\n‚¨‚ß‚Å‚Æ‚¤IƒIƒŠƒWƒiƒ‹‚Û‚ñ•Ç†‚ğƒvƒŒƒ[ƒ“ƒgI");
+						alert("Game Over\nã‚ãªãŸã®ã‚¹ã‚³ã‚¢ã¯" + scoreNumber + "ç‚¹ã§ã™ã€‚\nãŠã‚ã§ã¨ã†ï¼ã‚ªãƒªã‚¸ãƒŠãƒ«ã½ã‚“å£ç´™ã‚’ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆï¼");
 window.location.href = 'yokudekimasitane.html';
 					}
 				}
@@ -209,7 +210,7 @@ if(startflg==1){
 			score.innerHTML = "Score: " + scoreNumber + "pt";
 if (parseInt(window.getComputedStyle(chapel).getPropertyValue("left")) > 400){
 startflg=0;
-alert("‚¨‚ß‚Å‚Æ‚¤IƒIƒŠƒWƒiƒ‹‚Û‚ñ•Ç†‚ğƒvƒŒƒ[ƒ“ƒgI");
+alert("ãŠã‚ã§ã¨ã†ï¼ã‚ªãƒªã‚¸ãƒŠãƒ«ã½ã‚“å£ç´™ã‚’ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆï¼");
 window.location.href = 'yokudekimasitane.html';
 }
 if (parseInt(window.getComputedStyle(enemy).getPropertyValue("left")) < 0){
