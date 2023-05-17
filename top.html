@@ -1,67 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>神ゲー</title>
-	<style>
-		#game-board {
-			width: 800px;
-			height: 800px;
-			border: 1px solid black;
-			overflow: hidden;
-			position: relative;
-			margin: 0 auto;
-			background: url(./bg.png) repeat-x;
-			background-size: 150%;
-			animation: scroll-anim 5s linear infinite;
-			/*background-image:url(./go.png);     
-			background-repeat:  no-repeat;*/
-		}
-		#game-title {
-			width: 700px;
-			height: 700px;
-			overflow: hidden;
-			position: relative;
-			margin: 0 auto;
-	margin-top:0.95em;
-	font-size:6em;
-	text-align:center;
-	font-weight:bold;
-	color: transparent;
-	background: repeating-linear-gradient(45deg,
-		#F5B090 0.1em 0.2em,
-		#FCD7A1 0.2em 0.3em,
-		#FFF9B1 0.3em 0.4em,
-		#A5D4AD 0.4em 0.5em,
-		#A3BCE2 0.5em 0.6em,
-		#A59ACA 0.7em 0.8em,
-		#CFA7CD 0.8em 0.9em);
-	-webkit-background-clip: text;
-		}
-		#player {
-			width: 150px;
-			height: 130px; 
-			position: absolute;
-			bottom: 0;
-			left: 400px;
-		}
-@keyframes scroll-anim {
-	100% {
-		background-position: -300% 0;
-	}
-}
-	</style>
+<meta charset="utf-8">
+  <title>神ゲー</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url("topbg.gif");
+      background-size: cover;
+      color: #fff;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.3);;
+    }
+    
+    .title {
+      font-size: 4rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      animation: neon-glow 1s ease-in-out infinite alternate;
+    }
+    
+    .subtitle {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      animation: fade-in 2s ease-in-out forwards;
+    }
+    
+    @keyframes neon-glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00e6e6, 0 0 35px #00e6e6, 0 0 40px #00e6e6, 0 0 50px #00e6e6;
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 15px #00e6e6, 0 0 20px #00e6e6, 0 0 35px #00e6e6, 0 0 40px #00e6e6, 0 0 50px #00e6e6, 0 0 75px #00e6e6;
+      }
+    }
+    
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-	<div id="game-board">
-		<p id="game-title">ぽんの大冒険<br> <br>始める</p>
-		<img src="S18079751.jpg" id="player">
-	</div>
-	<script>
-		let gameBoard = document.getElementById("game-board");
-gameBoard.addEventListener("touchstart", function() {
-			window.location.href = 'game.html';
-		});
-	</script>
+  <div class="container">
+    <h1 class="title">PON Story</h1>
+    <p class="subtitle">Get ready for the ultimate gaming experience!</p>
+    <h3 class="title" onclick="window.location.href='game.html'" >Tap to start</h3>
+  </div>
 </body>
 </html>
