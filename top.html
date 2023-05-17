@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ê_ÉQÅ[</title>
+	<style>
+		#game-board {
+			width: 800px;
+			height: 800px;
+			border: 1px solid black;
+			overflow: hidden;
+			position: relative;
+			margin: 0 auto;
+			background: url(./bg.png) repeat-x;
+			background-size: 150%;
+			animation: scroll-anim 5s linear infinite;
+			/*background-image:url(./go.png);     
+			background-repeat:  no-repeat;*/
+		}
+		#game-title {
+			width: 700px;
+			height: 700px;
+			overflow: hidden;
+			position: relative;
+			margin: 0 auto;
+	margin-top:0.95em;
+	font-size:6em;
+	text-align:center;
+	font-weight:bold;
+	color: transparent;
+	background: repeating-linear-gradient(45deg,
+		#F5B090 0.1em 0.2em,
+		#FCD7A1 0.2em 0.3em,
+		#FFF9B1 0.3em 0.4em,
+		#A5D4AD 0.4em 0.5em,
+		#A3BCE2 0.5em 0.6em,
+		#A59ACA 0.7em 0.8em,
+		#CFA7CD 0.8em 0.9em);
+	-webkit-background-clip: text;
+		}
+		#player {
+			width: 150px;
+			height: 130px; 
+			position: absolute;
+			bottom: 0;
+			left: 400px;
+		}
+@keyframes scroll-anim {
+	100% {
+		background-position: -300% 0;
+	}
+}
+	</style>
+</head>
+<body>
+	<div id="game-board">
+		<p id="game-title">Ç€ÇÒÇÃëÂñ`åØ<br> <br>énÇﬂÇÈ</p>
+		<img src="S18079751.jpg" id="player">
+	</div>
+	<script>
+		let gameBoard = document.getElementById("game-board");
+gameBoard.addEventListener("touchstart", function() {
+			window.location.href = 'game.html';
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>神ゲー</title>
+	<style>
+		#game-board {
+			width: 800px;
+			height: 800px;
+			border: 1px solid black;
+			overflow: hidden;
+			position: relative;
+			margin: 0 auto;
+			background: url(./bg.png) repeat-x;
+			background-size: 150%;
+			animation: scroll-anim 5s linear infinite;
+			/*background-image:url(./go.png);     
+			background-repeat:  no-repeat;*/
+		}
+@keyframes scroll-anim {
+	100% {
+		background-position: -300% 0;
+	}
+}
+
+
+		#game-title {
+			width: 700px;
+			height: 700px;
+			overflow: hidden;
+			position: relative;
+			margin: 0 auto;
+	margin-top:0.95em;
+	font-size:6em;
+	text-align:center;
+	font-weight:bold;
+	color: transparent;
+	background: repeating-linear-gradient(45deg,
+		#F5B090 0.1em 0.2em,
+		#FCD7A1 0.2em 0.3em,
+		#FFF9B1 0.3em 0.4em,
+		#A5D4AD 0.4em 0.5em,
+		#A3BCE2 0.5em 0.6em,
+		#A59ACA 0.7em 0.8em,
+		#CFA7CD 0.8em 0.9em);
+	-webkit-background-clip: text;
+		}
+
+		
+		#player {
+			width: 150px;
+			height: 130px; 
+			position: absolute;
+			bottom: 0;
+			left: 600px;
+		}
+		
+		.enemy {
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			bottom: 0;
+			background: url(./nature_stone_ishi.png);
+			background-size: cover; /* 画像を要素に合わせて表示 */
+		}
+		
+		@keyframes move-enemy {
+			from {
+				left: -200px;
+			}
+			to {
+				left: 1000px;
+			}
+		}
+		
+		.chapel {
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			bottom: 0;
+			left: -200px;
+			background-size: cover; /* 画像を要素に合わせて表示 */
+		}
+		
+		@keyframes move-chapel {
+			from {
+				left: -200px;
+			}
+			to {
+				left: 1000px;
+			}
+		}
+		
+		#score {
+			position: absolute;
+			top: 30px;
+			right: 30px;
+			font-size: 60px;
+	font-weight:bold;
+	color: transparent;
+	background: repeating-linear-gradient(0deg, #B67B03 0.1em, #DAAF08 0.2em, #FEE9A0 0.3em, #DAAF08 0.4em, #B67B03 0.5em); 
+	-webkit-background-clip: text;
+	-webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, .6)), to(transparent));
+		}
+	</style>
+</head>
+<body>
+	<div id="game-board">
+		<p id="game-title">式場を目指せ<br>画面をタッチでスタートするよ</p>
+		<img src="S18079751.jpg" id="player">
+		<div class="enemy"></div>
+		<div class="chapel"></div>
+		<div id="score">Score: 0pt</div>
+	</div>
+　　　　　操作説明<br>
+　　　　　画面タッチでジャンプ
+	<script>
+window.onload = function () {
+
+		let player = document.getElementById("player");
+		let score = document.getElementById("score");
+		let gameBoard = document.getElementById("game-board");
+		let gameTitle = document.getElementById("game-title");
+		let enemies = document.querySelectorAll(".enemy");
+const enemy = document.querySelector('.enemy');
+const chapel = document.querySelector('.chapel');
+		let isJumping = false;
+		let gravity = 0.9;
+		let playerSpeed = 0;
+		let scoreNumber = 0;
+		let startflg = 0;
+
+		function jump() {
+			if (isJumping) return;
+			playerSpeed = 20;
+			isJumping = true;
+			let jumpInterval = setInterval(function() {
+				let playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue("bottom"));
+				if (playerBottom > 250) {
+					playerSpeed = -20;
+				}
+				player.style.bottom = playerBottom + playerSpeed + "px";
+				playerSpeed = playerSpeed - gravity;
+				if (playerBottom < 0) {
+					player.style.bottom = "0px";
+					isJumping = false;
+					clearInterval(jumpInterval);
+				}
+			}, 20);
+		}
+
+		function moveEnemies() {
+			enemies.forEach(function(enemy) {
+				let enemyLeft = parseInt(window.getComputedStyle(enemy).getPropertyValue("left"));
+				if (checkCollision(enemy, player)&&startflg==1) {
+					if (scoreNumber < 1000) {
+startflg=0;
+						alert("Game Over\nあなたのスコアは" + scoreNumber + "点です。\n低いですね。");
+window.location.href = 'top.html';
+					} else if(1000 <= scoreNumber && scoreNumber < 3000){
+startflg=0;
+						alert("Game Over\nあなたのスコアは" + scoreNumber + "点です。\nまだまだですね。");
+window.location.href = 'top.html';
+					} else if(3000 <= scoreNumber && scoreNumber < 5000){
+startflg=0;
+						alert("Game Over\nあなたのスコアは" + scoreNumber + "点です。\nまあまあですね。");
+window.location.href = 'top.html';
+					} else if(5000 <= scoreNumber && scoreNumber < 7000){
+startflg=0;
+						alert("Game Over\nあなたのスコアは" + scoreNumber + "点です。\nいい線行ってますね。");
+window.location.href = 'top.html';
+					} else if(7000 <= scoreNumber && scoreNumber < 9000){
+startflg=0;
+						alert("Game Over\nあなたのスコアは" + scoreNumber + "点です。\nすげえ。");
+window.location.href = 'top.html';
+					} else if(10000 <= scoreNumber){
+startflg=0;
+						alert("Game Over\nあなたのスコアは" + scoreNumber + "点です。\nおめでとう！オリジナルぽん壁紙をプレゼント！");
+window.location.href = 'yokudekimasitane.html';
+					}
+				}
+			});
+		}
+
+		function checkCollision(enemy, player) {
+			let enemyRect = enemy.getBoundingClientRect();
+			let playerRect = player.getBoundingClientRect();
+			return !(
+				(enemyRect.bottom < playerRect.top) ||
+				(enemyRect.top > playerRect.bottom) ||
+				(enemyRect.right < playerRect.left) ||
+				(enemyRect.left > playerRect.right)
+			);
+		}
+
+gameBoard.addEventListener("touchstart", function() {
+			jump();
+if(startflg==0){
+startflg=1;
+enemy.style.animation = 'move-enemy 2.5s infinite linear';
+gameTitle.style.display = 'none';
+}
+		});
+
+		setInterval(function() {
+
+if(startflg==1){
+
+			scoreNumber++;
+			score.innerHTML = "Score: " + scoreNumber + "pt";
+if (parseInt(window.getComputedStyle(chapel).getPropertyValue("left")) > 400){
+startflg=0;
+alert("おめでとう！オリジナルぽん壁紙をプレゼント！");
+window.location.href = 'yokudekimasitane.html';
+}
+if (parseInt(window.getComputedStyle(enemy).getPropertyValue("left")) < 0){
+						if (scoreNumber < 1000) {
+	enemy.style.animation = 'move-enemy 2.5s infinite linear';
+						} else if(1000 <= scoreNumber && scoreNumber < 2000){
+	enemy.style.animation = 'move-enemy 2s infinite linear';
+						} else if(2000 <= scoreNumber && scoreNumber < 3000){
+	enemy.style.animation = 'move-enemy 1.7s infinite linear';
+						} else if(3000 <= scoreNumber && scoreNumber < 4000){
+	enemy.style.width = '70px';
+	enemy.style.height = '70px';
+						} else if(4000 <= scoreNumber && scoreNumber < 5000){
+	enemy.style.width = '100px';
+	enemy.style.height = '100px';
+						} else if(5000 <= scoreNumber && scoreNumber < 6000){
+	enemy.style.bottom = '200px';
+						} else if(6000 <= scoreNumber && scoreNumber < 7000){
+	enemy.style.bottom = '0';
+	enemy.style.width = '100px';
+	enemy.style.height = '100px';
+						} else if(7000 <= scoreNumber && scoreNumber < 7500){
+	enemy.style.bottom = '200px';
+	enemy.style.width = '70px';
+	enemy.style.height = '70px';
+						} else if(7500 <= scoreNumber && scoreNumber < 8000){
+	enemy.style.bottom = '0';
+	enemy.style.width = '100px';
+	enemy.style.height = '100px';
+						} else if(8000 <= scoreNumber && scoreNumber < 9000){
+	enemy.style.bottom = '0';
+	enemy.style.width = '130px';
+	enemy.style.height = '130px';
+						} else if(9000 <= scoreNumber && scoreNumber < 10000){
+	enemy.style.bottom = '0';
+	enemy.style.width = '100px';
+	enemy.style.height = '100px';
+						} else if(10000 <= scoreNumber){
+	enemy.style.animation = 'move-enemy 0s infinite linear';
+	chapel.style.animation = 'move-chapel 5s infinite linear';
+	chapel.style.bottom = '50px';
+	chapel.style.width = '319px';
+	chapel.style.height = '400px';
+	chapel.style.backgroundImage = 'url("building_chapel.png")';
+						}
+}
+
+}
+
+		}, 10);
+
+		setInterval(function() {
+			moveEnemies();
+		}, 2);
+
+}
+	</script>
+</body>
+</html>
