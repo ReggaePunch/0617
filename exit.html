@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>写真切り替え</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+    .button-container {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .link-container {
+      position: absolute;
+      right: 180px;
+      bottom: 180px;
+    }
+    .link-container2 {
+      position: absolute;
+      right: 50%;
+      bottom: 50%;
+    }
+    }
+    .unko {
+      position: absolute;
+      top: 100px;
+      right: 100px;
+      width: 50px;
+      height: 50px;
+      display: block;
+    }
+    a {
+      padding: 5px 10px;
+      font-size: 16px;
+      background-color: #fff;
+      color: #000;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img id="photo" src="photo1.jpg" alt="写真">
+    <div class="link-container">
+      <button onclick="nextPhoto2()">？</button>
+    </div>
+    <div class="link-container2">
+      <button onclick="getItem()">？</button>
+    </div>
+    <img id="unko" src="unko.png" alt="写真">
+    <div class="button-container">
+      <button onclick="previousPhoto()">前の写真</button>
+      <button onclick="nextPhoto()">次の写真</button>
+    </div>
+  </div>
+
+  <script>
+    // 画像ファイルのリストを作成
+    const photoList = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg'];
+    const photoList2 = ['pon.jpg', 'unko.png'];
+    var cnt = 0;
+
+    let currentPhotoIndex = 0;
+
+    // 初期表示時に最初の画像を表示
+    const photoElement = document.getElementById('photo');
+    photoElement.src = photoList[currentPhotoIndex];
+
+    // 前の写真を表示する関数
+    function previousPhoto() {
+      currentPhotoIndex = (currentPhotoIndex - 1 + photoList.length) % photoList.length;
+      photoElement.src = photoList[currentPhotoIndex];
+      toggleLinkVisibility();
+    }
+
+    // 次の写真を表示する関数
+    function nextPhoto() {
+      currentPhotoIndex = (currentPhotoIndex + 1) % photoList.length;
+      photoElement.src = photoList[currentPhotoIndex];
+      toggleLinkVisibility();
+    }
+
+    // 次の写真を表示する関数
+    function nextPhoto2() {
+      currentPhotoIndex = 0;
+      photoElement.src = photoList2[currentPhotoIndex];
+      const linkContainer = document.querySelector('.link-container');
+      linkContainer.style.display = 'none';
+      const linkContainer2 = document.querySelector('.link-container2');
+      linkContainer2.style.display = 'block';
+    }
+
+    // 次の写真を表示する関数
+    function getItem() {
+      if(cnt==0){
+       alert("わん");
+      }else if(cnt==1){
+      alert("わん!わん!");
+      }else if(cnt==2){
+      alert("わん!わん!わん!");
+      alert("うんこを手に入れた");
+      window.location.href = 'clear.jpg';
+      }
+      cnt++;
+    }
+
+    // リンクの表示を切り替える関数
+    function toggleLinkVisibility() {
+      const linkContainer = document.querySelector('.link-container');
+      const linkContainer2 = document.querySelector('.link-container2');
+      linkContainer2.style.display = 'none';
+      if (currentPhotoIndex === 0) {
+        linkContainer.style.display = 'block';
+      } else {
+        linkContainer.style.display = 'none';
+      }
+    }
+
+    // 初期表示時にリンクの表示を設定
+    toggleLinkVisibility();
+  </script>
+</body>
+</html>
